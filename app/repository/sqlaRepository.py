@@ -17,12 +17,17 @@ class SqlalchemyRepository[T](RepositoryInterface):
         result_rows = rows_future.all()
         return result_rows
 
-    async def get_by_filter(self, session: AsyncSession, unique_where: str) -> Sequence[T] | None:
+    async def get_by_filter(
+            self,
+            session: AsyncSession,
+            unique_where: str, where_column_values: dict
+    ) -> Sequence[T] | None:
+
         req = (
             select(self._scheme_model)
             .where(text(unique_where))
         )
-        rows_future = await session.scalars(req)
+        rows_future = await session.scalars(req, where_column_values)
         result_rows = rows_future.all()
         return result_rows
 

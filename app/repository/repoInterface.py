@@ -8,7 +8,7 @@ class RepositoryInterface(ABC):
         raise NotImplemented
 
     @abstractmethod
-    def get_by_filter(self, session, unique_values):
+    def get_by_filter(self, session, unique_where, where_column_values):
         raise NotImplemented
 
     @abstractmethod
