@@ -8,6 +8,10 @@ class RepositoryInterface(ABC):
         raise NotImplemented
 
     @abstractmethod
+    def get_by_filter(self, session, unique_values):
+        raise NotImplemented
+
+    @abstractmethod
     def get_one(self, session, unique_values):
         raise NotImplemented
 
